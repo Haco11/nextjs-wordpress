@@ -1,3 +1,5 @@
+import { cleanAndTransformBlocks } from "./cleanAndTransformBlocks";
+
 export const getPage = async () => {
   const params = {
     query: `query NewQuery {
@@ -18,5 +20,5 @@ export const getPage = async () => {
     },
   });
   const { data }: any = await response.json();
-  return data.nodeByUri.blocks;
+  return cleanAndTransformBlocks(data.nodeByUri.blocks);
 };
