@@ -1,12 +1,13 @@
 export const getPage = async () => {
   const params = {
     query: `query NewQuery {
-        pages {
-          nodes {
-            title
-          }
+      nodeByUri(uri: "/") {
+        ... on Page {
+          id
+          blocks
         }
       }
+    }
   `,
   };
   const response = await fetch(`${process.env.WP_GRAPHQL_URL}`, {
@@ -16,6 +17,6 @@ export const getPage = async () => {
       "Content-Type": "application/json",
     },
   });
-  const { data } = await response.json();
-  return { data };
+  const { data }: any = await response.json();
+  return data.nodeByUri.blocks;
 };
