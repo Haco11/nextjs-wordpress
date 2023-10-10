@@ -24,6 +24,10 @@ export const getPage = async (uri: any) => {
     },
   });
   const { data }: any = await response.json();
+
+  if (!data.nodeByUri) {
+    return null;
+  }
   const blocks = cleanAndTransformBlocks(data.nodeByUri.blocks);
   return {
     title: data.nodeByUri.title,
