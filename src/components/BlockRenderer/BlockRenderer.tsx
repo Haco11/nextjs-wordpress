@@ -1,8 +1,24 @@
 import { Cover } from "../Cover";
 import { Heading } from "../Heading";
+import { Paragraph } from "../Paragraph";
+import { theme } from "../../../theme";
+
 export const BlockRenderer = ({ blocks }: any) => {
   return blocks.map((block: any) => {
     switch (block.name) {
+      case "core/paragraph": {
+        return (
+          <Paragraph
+            key={block.id}
+            textAlign={block.attributes.align}
+            content={block.attributes.content}
+            textColor={
+              theme[block.attributes.textColor as keyof typeof theme] ||
+              block.attributes.style?.color?.text
+            }
+          />
+        );
+      }
       case "core/heading": {
         return (
           <Heading

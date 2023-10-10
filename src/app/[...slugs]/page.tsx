@@ -8,7 +8,6 @@ export default async function Page({ params }: any) {
   }
   return (
     <main>
-      <div>{data.title}</div>
       <BlockRenderer blocks={data.blocks} />
     </main>
   );
