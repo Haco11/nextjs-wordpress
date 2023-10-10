@@ -1,16 +1,20 @@
 import { cleanAndTransformBlocks } from "./cleanAndTransformBlocks";
 
-export const getPage = async () => {
+export const getPage = async (uri: any) => {
   const params = {
-    query: `query NewQuery {
-      nodeByUri(uri: "/") {
+    query: `query PageQuery($uri: String!) {
+      nodeByUri(uri: $uri) {
         ... on Page {
           id
+          title
           blocks
         }
       }
     }
   `,
+    variables: {
+      uri,
+    },
   };
   const response = await fetch(`${process.env.WP_GRAPHQL_URL}`, {
     method: "POST",
@@ -20,5 +24,9 @@ export const getPage = async () => {
     },
   });
   const { data }: any = await response.json();
-  return cleanAndTransformBlocks(data.nodeByUri.blocks);
+  const blocks = cleanAndTransformBlocks(data.nodeByUri.blocks);
+  return {
+    title: data.nodeByUri.title,
+    blocks,
+  };
 };
