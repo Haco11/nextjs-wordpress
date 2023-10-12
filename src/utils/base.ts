@@ -10,6 +10,28 @@ export const getPage = async (uri: any) => {
           blocks
         }
       }
+      acfOptionsMainMenu {
+        mainMenu {
+          menuItems {
+            menuItem {
+              destination {
+                ... on Page {
+                  uri
+                }
+              }
+              label
+            }
+            items {
+              destination {
+                ... on Page {
+                  uri
+                }
+              }
+              label
+            }
+          }
+        }
+      }
     }
   `,
     variables: {
@@ -24,7 +46,6 @@ export const getPage = async (uri: any) => {
     },
   });
   const { data }: any = await response.json();
-
   if (!data.nodeByUri) {
     return null;
   }
