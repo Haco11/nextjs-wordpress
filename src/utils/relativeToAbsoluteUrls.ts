@@ -1,3 +1,4 @@
 export const relativeToAbsoluteUrls = (htmlString = "") => {
-  return htmlString.split(process.env.NEXT_PUBLIC_WP_URL).join("");
+  const baseUrl = process.env.NEXT_PUBLIC_WP_URL || "";
+  return htmlString.split(baseUrl).join("");
 };
