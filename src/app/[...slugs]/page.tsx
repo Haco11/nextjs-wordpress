@@ -6,6 +6,7 @@ export default async function Page({ params }: any) {
   if (!data) {
     notFound();
   }
+  console.log(data);
   return (
     <main>
       <BlockRenderer blocks={data.blocks} />

@@ -1,4 +1,5 @@
 import { cleanAndTransformBlocks } from "./cleanAndTransformBlocks";
+import { mapMainMenuItems } from "./mapMainMenuItems";
 
 export const getPage = async (uri: any) => {
   const params = {
@@ -16,6 +17,7 @@ export const getPage = async (uri: any) => {
             menuItem {
               destination {
                 ... on Page {
+                  id
                   uri
                 }
               }
@@ -24,6 +26,7 @@ export const getPage = async (uri: any) => {
             items {
               destination {
                 ... on Page {
+                  id
                   uri
                 }
               }
@@ -52,6 +55,7 @@ export const getPage = async (uri: any) => {
   const blocks = cleanAndTransformBlocks(data.nodeByUri.blocks);
   return {
     title: data.nodeByUri.title,
+    mainMenuItems: mapMainMenuItems(data.acfOptionsMainMenu.mainMenu.menuItems),
     blocks,
   };
 };
