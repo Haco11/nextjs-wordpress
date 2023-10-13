@@ -13,8 +13,24 @@ export const MainMenu = ({ items }: any) => {
             key={item.id}
             className="hover:bg-slate-700 cursor-pointer relative group">
             <div>
-              <Link href={item.destination}>{item.label}</Link>
+              <Link className="p-5 block" href={item.destination}>
+                {item.label}
+              </Link>
             </div>
+            {!!item.subMenuItems?.length && (
+              <div className="group-hover:block hidden bg-slate-800 text-right absolute right-0 top-full -mt-3">
+                {item.subMenuItems?.map((subItem: any) => (
+                  <div key={subItem.id}>
+                    <Link
+                      className="block whitespace-nowrap p-5 hover:bg-slate-700"
+                      href={subItem.destination}
+                      key={subItem.id}>
+                      {subItem.label}
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         ))}
       </div>
