@@ -9,7 +9,7 @@ export default async function Page({ params }: any) {
   console.log(data);
   return (
     <main>
-      <BlockRenderer blocks={data.blocks} />
+      <BlockRenderer blocks={data?.blocks} />
     </main>
   );
 }
