@@ -13,6 +13,15 @@ export const getPage = async (uri: any) => {
       }
       acfOptionsMainMenu {
         mainMenu {
+          callToActionButton {
+            destination {
+              ... on Page {
+                id
+                uri
+              }
+            }
+            label
+          }
           menuItems {
             menuItem {
               destination {
@@ -56,6 +65,10 @@ export const getPage = async (uri: any) => {
   return {
     title: data.nodeByUri.title,
     mainMenuItems: mapMainMenuItems(data.acfOptionsMainMenu.mainMenu.menuItems),
+    callToActionDestination:
+      data.acfOptionsMainMenu.mainMenu.callToActionButton.destination.uri,
+    callToActionLabel:
+      data.acfOptionsMainMenu.mainMenu.callToActionButton.label,
     blocks,
   };
 };
