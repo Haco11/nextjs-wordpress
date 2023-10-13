@@ -11,7 +11,11 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className="font-body">
-        <MainMenu items={data?.mainMenuItems} />
+        <MainMenu
+          items={data?.mainMenuItems}
+          callToActionLabel={data?.callToActionLabel}
+          callToActionDestination={data?.callToActionDestination}
+        />
 
         {children}
       </body>
