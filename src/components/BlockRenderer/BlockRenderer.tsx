@@ -2,10 +2,21 @@ import { Cover } from "../Cover";
 import { Heading } from "../Heading";
 import { Paragraph } from "../Paragraph";
 import { theme } from "../../../theme";
+import { CallToActionButton } from "../CallToActionButton";
 
 export const BlockRenderer = ({ blocks }: any) => {
   return blocks.map((block: any) => {
     switch (block.name) {
+      case "acf/ctabutton": {
+        return (
+          <CallToActionButton
+            key={block.id}
+            buttonLabel={block.attributes.data.label}
+            destination={block.attributes.data.destination || "/"}
+            align={block.attributes.data.align}
+          />
+        );
+      }
       case "core/paragraph": {
         return (
           <Paragraph
@@ -37,6 +48,7 @@ export const BlockRenderer = ({ blocks }: any) => {
         );
       }
       default:
+        console.log("Bob", block);
         return null;
     }
   });
