@@ -52,7 +52,11 @@ export const BlockRenderer = ({ blocks }: any) => {
         );
       }
       case "core/columns": {
-        return <Colums key={block.id} />;
+        return (
+          <Colums key={block.id}>
+            <BlockRenderer blocks={block.innerBlocks} />
+          </Colums>
+        );
       }
       default:
         console.log("Bob", block);
