@@ -4,6 +4,7 @@ import { Paragraph } from "../Paragraph";
 import { theme } from "../../../theme";
 import { CallToActionButton } from "../CallToActionButton";
 import { Colums } from "../Columns";
+import { Colum } from "../Column";
 
 export const BlockRenderer = ({ blocks }: any) => {
   return blocks.map((block: any) => {
@@ -50,13 +51,15 @@ export const BlockRenderer = ({ blocks }: any) => {
       }
       case "core/columns": {
         return (
-          <Colums key={block.id}>
-            <BlockRenderer
-              blocks={block.innerBlocks}
-              isStackedOnMobile={block.attributes.isStackedOnMobile}
-            />
+          <Colums
+            key={block.id}
+            isStackedOnMobile={block.attributes.isStackedOnMobile}>
+            <BlockRenderer blocks={block.innerBlocks} />
           </Colums>
         );
+      }
+      case "core/column": {
+        return <Colum key={block.id} />;
       }
       default:
         console.log("Bob", block);
