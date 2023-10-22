@@ -44,7 +44,10 @@ export const BlockRenderer = ({ blocks }: any) => {
       case "core/cover": {
         return (
           <Cover key={block.id} background={block.attributes.url}>
-            <BlockRenderer blocks={block.innerBlocks} />
+            <BlockRenderer
+              blocks={block.innerBlocks}
+              isStackedOnMobile={block.attributes.isStackedOnMobile}
+            />
           </Cover>
         );
       }
