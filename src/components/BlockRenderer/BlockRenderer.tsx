@@ -3,6 +3,7 @@ import { Heading } from "../Heading";
 import { Paragraph } from "../Paragraph";
 import { theme } from "../../../theme";
 import { CallToActionButton } from "../CallToActionButton";
+import { Colums } from "../Columns";
 
 export const BlockRenderer = ({ blocks }: any) => {
   return blocks.map((block: any) => {
@@ -46,6 +47,9 @@ export const BlockRenderer = ({ blocks }: any) => {
             <BlockRenderer blocks={block.innerBlocks} />
           </Cover>
         );
+      }
+      case "core/columns": {
+        return <Colums key={block.id} />;
       }
       default:
         console.log("Bob", block);
