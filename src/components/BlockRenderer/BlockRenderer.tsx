@@ -59,14 +59,14 @@ export const BlockRenderer = ({ blocks }: any) => {
         );
       }
       case "core/column": {
+        console.log("HACO", block.innerBlocks);
         return (
-          <Column key={block.id}>
+          <Column key={block.id} width={block.attributes.width}>
             <BlockRenderer blocks={block.innerBlocks} />
           </Column>
         );
       }
       default:
-        console.log("Bob", block);
         return null;
     }
   });
