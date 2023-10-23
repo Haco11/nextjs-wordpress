@@ -1,3 +1,3 @@
-export const Colums = ({ isStackedOnMobile, children }: any) => {
+export const Column = ({ isStackedOnMobile, children }: any) => {
   return <div>Column</div>;
 };

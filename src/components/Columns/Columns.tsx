@@ -1,4 +1,4 @@
-export const Colums = ({ isStackedOnMobile, children }: any) => {
+export const Columns = ({ isStackedOnMobile, children }: any) => {
   return (
     <div className="my-10">
       <div

@@ -3,8 +3,8 @@ import { Heading } from "../Heading";
 import { Paragraph } from "../Paragraph";
 import { theme } from "../../../theme";
 import { CallToActionButton } from "../CallToActionButton";
-import { Colums } from "../Columns";
-import { Colum } from "../Column";
+import { Columns } from "../Columns";
+import { Column } from "../Column";
 
 export const BlockRenderer = ({ blocks }: any) => {
   return blocks.map((block: any) => {
@@ -51,15 +51,19 @@ export const BlockRenderer = ({ blocks }: any) => {
       }
       case "core/columns": {
         return (
-          <Colums
+          <Columns
             key={block.id}
             isStackedOnMobile={block.attributes.isStackedOnMobile}>
             <BlockRenderer blocks={block.innerBlocks} />
-          </Colums>
+          </Columns>
         );
       }
       case "core/column": {
-        return <Colum key={block.id} />;
+        return (
+          <Column key={block.id}>
+            <BlockRenderer blocks={block.innerBlocks} />
+          </Column>
+        );
       }
       default:
         console.log("Bob", block);
