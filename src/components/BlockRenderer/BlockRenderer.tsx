@@ -5,6 +5,7 @@ import { theme } from "../../../theme";
 import { CallToActionButton } from "../CallToActionButton";
 import { Columns } from "../Columns";
 import { Column } from "../Column";
+import Image from "next/image";
 
 export const BlockRenderer = ({ blocks }: any) => {
   return blocks.map((block: any) => {
@@ -64,6 +65,17 @@ export const BlockRenderer = ({ blocks }: any) => {
           <Column key={block.id} width={block.attributes.width}>
             <BlockRenderer blocks={block.innerBlocks} />
           </Column>
+        );
+      }
+      case "core/image": {
+        return (
+          <Image
+            key={block.id}
+            src={block.attributes.url}
+            height={block.attributes.height}
+            width={block.attributes.width}
+            alt={block.attributes.alt}
+          />
         );
       }
       default:
