@@ -60,12 +60,17 @@ export const BlockRenderer = ({ blocks }: any) => {
         );
       }
       case "core/column": {
-        console.log("HACO", block.innerBlocks);
         return (
           <Column key={block.id} width={block.attributes.width}>
             <BlockRenderer blocks={block.innerBlocks} />
           </Column>
         );
+      }
+      case "core/group":
+      case "core/block": {
+        console.log("BOB", block);
+
+        return <BlockRenderer key={block.id} blocks={block.innerBlocks} />;
       }
       case "core/image": {
         return (
